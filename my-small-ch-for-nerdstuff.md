@@ -91,3 +91,5 @@ pip install -R requirements.txt   ~ installs all pkgs from requirements.txt
 rm -rf myenv_name                 ~ removes venv
 pip uninstall package_name        ~ uninstalls venvs
 
+
+sudo tee /sys/class/backlight/amdgpu_bl1/brightness <<< 100     ~ sets brightness
