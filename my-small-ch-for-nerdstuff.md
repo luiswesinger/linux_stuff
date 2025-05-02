@@ -37,7 +37,8 @@ a  --> filename    ~ creates new file and name it
 tab     ~ switches window
 v   ~ opens optionsbar
 ctrl + W    ~ opens Window-management-bar
-ctrl + w + h    ~ switch window
+ctrl + w + h    ~ switch to left window
+ctrl + w + l    ~ switch to right window
 ctrl + alt + n  ~ toggles filetree  
 :Mason          ~ lists Mason menue for installing plugins
 
@@ -91,5 +92,9 @@ pip install -R requirements.txt   ~ installs all pkgs from requirements.txt
 rm -rf myenv_name                 ~ removes venv
 pip uninstall package_name        ~ uninstalls venvs
 
-
+### System calls:
 sudo tee /sys/class/backlight/amdgpu_bl1/brightness <<< 100     ~ sets brightness
+
+### Code formatter:
+clang-format --help                 ~ for formatting C and C++ Code
+clang-format -i --style=WebKit      ~ for formatting code in sourcefile to WebKit standart
