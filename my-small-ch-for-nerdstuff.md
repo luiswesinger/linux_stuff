@@ -27,6 +27,8 @@ i ~ insert
 :vs ~ visual split
 yy ~ copy current line
 P ~ paste before your cursor
+caw ~ delete word under cursor and go into insert mode 
+daw ~ delete word under cursor
 
 ### nvchad command : 
 (setting, plugins and co. can be changed in ~/.config/nvim/)
@@ -98,3 +100,8 @@ sudo tee /sys/class/backlight/amdgpu_bl1/brightness <<< 100     ~ sets brightnes
 ### Code formatter:
 clang-format --help                 ~ for formatting C and C++ Code
 clang-format -i --style=WebKit      ~ for formatting code in sourcefile to WebKit standart
+
+### Connect to OTH KI-GPU-Server via VPN
+sudo openfortivpn                           ~ activate VPN
+ssh wel36343@im-kigs.oth-regensburg.de      ~ conntect to KI-GPU-Server
+ssh-copy-id <rz_kennung>@im-kigs.oth-regensburg.de      ~ add ssh-pub-key to server
