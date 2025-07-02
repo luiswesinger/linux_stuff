@@ -1,107 +1,164 @@
-# Cheatsheet for Linux terminal stuff and commands I always forget
+# 🐧 Linux Terminal Cheatsheet
 
-### classic linux commands
-ls -l ~ list all files one per line
+A handy cheat sheet for frequently used Linux commands, Pacman/Yay package management, Vim/NvChad shortcuts, LaTeX compilation, Python virtual environments, and more — tailored for daily development on Arch Linux, Neovim (NvChad), Jupyter, and remote university servers.
 
-### Pacman commands 
-pacman -Rns package_nam ~ remove package with dependencies and config files 
-Pacman -S pkg-name ~ for installing linux arch packages
-pacman -Q   ~ alle pakete
-pacman -Qe  ~ alle MANUELL installierte pakete
-pacman -Qd  ~ nur als depend. installierte pakete
-pacman -Qi  ~ infos zu einem Paket
-pacman -Si  ~ infos zu noch nicht installiertem paket
-sudo pacman -Qdt    ~ alle verwaisten und unbenutzten Pakete
-sudo pacman -Rns $(pacman -Qdtq)    ~ löscht alle unbenutzten pakete
+---
 
-### yay packet manager for AUR
-yay pkg-name ~ for installing aur packages via yay
-yay -Rns pkg-name ~ for removing aur packages and dep. which are not used by any other pkgs
-yay -Ps ~ Print system statistics
+## 📁 Classic Linux Commands
 
-### vim commands :
-vimtutor ~ show vim commands
-i ~ insert
-:wq ~ write and quit
-:q! ~ forcequit without writing
-:vs ~ visual split
-yy ~ copy current line
-P ~ paste before your cursor
-caw ~ delete word under cursor and go into insert mode 
-daw ~ delete word under cursor
+ - `ls -l ~` → Lists all files in the home directory, one per line with details.
 
-### nvchad command : 
-(setting, plugins and co. can be changed in ~/.config/nvim/)
-space + ch  ~ opens cheatsheet
-space + e   ~ opens filetree
-space + th  ~ changes colortheme
-a  --> filename    ~ creates new file and name it 
-tab     ~ switches window
-v   ~ opens optionsbar
-ctrl + W    ~ opens Window-management-bar
-ctrl + w + h    ~ switch to left window
-ctrl + w + l    ~ switch to right window
-ctrl + alt + n  ~ toggles filetree  
-:Mason          ~ lists Mason menue for installing plugins
+---
 
-### latexcommands:
-pdflatex [filename].tex     ~ will compile to [filename].pdf
+## 📦 Pacman – Arch Linux Package Manager
 
-### Farbschemata: 
-bash -c  "$(wget -qO- https://git.io/vQgMr)"  ~ gogh Farbschemata
+ - `pacman -S pkg-name` → Install an Arch package.
+ - `pacman -Rns package_name` → Remove package with unused dependencies and config files.
+ - `pacman -Q` → List all installed packages.
+ - `pacman -Qe` → List all **explicitly** installed packages.
+ - `pacman -Qd` → List all **dependencies** installed automatically.
+ - `pacman -Qi pkg-name` → Show information about an installed package.
+ - `pacman -Si pkg-name` → Show information about an available package.
+ - `sudo pacman -Qdt` → List orphaned packages.
+ - `sudo pacman -Rns $(pacman -Qdtq)` → Remove all orphaned packages.
 
-### Generate colorscheme to img:
-wal -i img_name.png
-wallust run PICTURE.IMG     ~ generates colorscheme based on given picture 
-wallust theme <Themename>   ~ genereate colorscheme based on given theme
+---
 
-### Clean cache of pacman and yay:
-sudo pacman -Rns $(pacman -Qdtq)    ~ removes old kernels
-sudo paccache -r  ~ clean all packages, except 3most recent versions
-sudo paccache -ruk0  ~ remove all cached versions of unistalled packages
-sudo pacman -Sc  ~ keep only the current and last version of pakets
-yay -Pc  ~ clean unneeded dependencies
-yay -Rns $(yay -Qdtq)   ~ remove all unused and lost packages
-pip cache purge         ~ cleans the pip chache
+## 🧞 Yay – AUR Package Manager
 
+ - `yay pkg-name` → Install a package from the Arch User Repository.
+ - `yay -Rns pkg-name` → Remove AUR package including unused dependencies.
+ - `yay -Ps` → Print system statistics.
+ - `yay -Pc` → Clean orphaned AUR dependencies.
+ - `yay -Rns $(yay -Qdtq)` → Remove all unused and orphaned AUR packages.
 
-### tilix shortcuts:
-ctrl + PageDown ~ switch to next terminal
-ctrl + shift + t    ~ opens new terminalsession
-ctrl + alt + d      ~ opens new terminal down  
-ctrl + alt + r      ~ opens new terminal to the right
+---
 
-### jupyter notebook:
-jupyter lab ~ start jupyter lab in browser
+## ✍️ Vim / NvChad Shortcuts
 
-### GCC Compiler:
--g0         ~ flag for no debug information
+- `i` → Enter insert mode
+- `:wq` → Save and quit
+- `:q!` → Quit without saving
+- `:vs` → Vertical split
+- `yy` → Copy current line
+- `P` → Paste before cursor
+- `caw` → Delete word and enter insert mode
+- `daw` → Delete word under cursor
 
-### Storage:
-free -h     ~ shows RAM
-htop        ~ shows current RAM
-df -h       ~ shows filesystem with -h for "human readable"
-expac -H M "%m %n" $(pacman -Qeq) | sort -h     ~ shows storage of all installed packages
+### NvChad Specific:
+Config path: `~/.config/nvim/`
 
-### Python venv commands: 
-python -m venv myenv_name         ~ creates a venv in current directory with name: "myenv_name"
-source myenv_name/bin/activate    ~ activates the venv
-deactivate                        ~ deactivates the venv
-pip install package_name          ~ installs python modules in venv
-pip list                          ~ lists all currently installed python modules
-pip freeze > requirements.txt     ~ writes all used pkgs in requirements.txt file
-pip install -R requirements.txt   ~ installs all pkgs from requirements.txt 
-rm -rf myenv_name                 ~ removes venv
-pip uninstall package_name        ~ uninstalls venvs
+| Shortcut | Description |
+|----------|-------------|
+| `<space> + ch` | Open cheatsheet |
+| `<space> + e`  | Open file tree |
+| `<space> + th` | Change colorscheme |
+| `a`            | Create a new file |
+| `Tab`          | Switch windows |
+| `v`            | Open options bar |
+| `Ctrl + W`     | Window manager |
+| `Ctrl + W + h` | Move to left window |
+| `Ctrl + W + l` | Move to right window |
+| `Ctrl + Alt + n` | Toggle file tree |
+| `:Mason`       | Open Mason UI for LSP/tools |
 
-### System calls:
-sudo tee /sys/class/backlight/amdgpu_bl1/brightness <<< 100     ~ sets brightness
+---
 
-### Code formatter:
-clang-format --help                 ~ for formatting C and C++ Code
-clang-format -i --style=WebKit      ~ for formatting code in sourcefile to WebKit standart
+## 📚 LaTeX
 
-### Connect to OTH KI-GPU-Server via VPN
-sudo openfortivpn                           ~ activate VPN
-ssh wel36343@im-kigs.oth-regensburg.de      ~ conntect to KI-GPU-Server
-ssh-copy-id <rz_kennung>@im-kigs.oth-regensburg.de      ~ add ssh-pub-key to server
+```bash
+pdflatex filename.tex
+```
+→ Compiles `.tex` file to `.pdf`
+
+---
+
+## 🎨 Colors & Themes
+
+**Install Gogh color schemes:**
+ - `bash -c "$(wget -qO- https://git.io/vQgMr)"` 
+
+**Generate scheme from image:**
+ -`wal -i image.png`
+ - `wallust run image.png`
+
+**Wallust Themes:**
+ - `wallust theme <theme_name>`
+
+---
+
+## 🧹 Clean Cache (Pacman, Yay, Pip)
+
+ - `sudo pacman -Rns $(pacman -Qdtq)` → Remove unused packages.
+ - `sudo paccache -r` → Keep only the 3 most recent versions of packages.
+ - `sudo paccache -ruk0` → Remove all cached versions of uninstalled packages.
+ - `sudo pacman -Sc` → Keep only current and previous versions.
+ - `pip cache purge` → Clear pip cache.
+
+---
+
+## 🧪 Python Virtual Environments
+ - `python -m venv env_name` → Create virtual environment.
+ - `source env_name/bin/activate` → Activate environment.
+ - `deactivate` → Deactivate environment.
+ - `pip install package_name`
+ - `pip uninstall package_name`
+ - `pip list` → List installed Python packages.
+ - `pip freeze > requirements.txt`
+ - `pip install -r requirements.txt` → Install packages from requirements file.
+ - `rm -rf env_name` → Delete virtual environment.
+
+---
+
+## 🧠 Jupyter Notebooks
+ - `jupyter lab` → Launch Jupyter Lab in browser.
+
+---
+
+## 🧮 GCC Compiler
+ - `-g0` → Compile without debug symbols (release mode).
+
+---
+
+## 💾 System Info / Storage
+ - `free -h` → Show RAM usage (human readable)
+ - `htop` → Interactive process viewer
+ - `df -h` → Show mounted filesystems and usage
+ - `expac -H M "%m %n" $(pacman -Qeq) | sort -h` → Show disk usage per installed package
+
+---
+
+## 🖥️ Tilix Terminal Shortcuts
+
+| Shortcut | Action |
+|----------|--------|
+| `Ctrl + PageDown` | Switch to next terminal tab |
+| `Ctrl + Shift + T` | Open new terminal session |
+| `Ctrl + Alt + D`   | Open terminal below |
+| `Ctrl + Alt + R`   | Open terminal to the right |
+
+---
+
+## 🌞 Screen Brightness
+ - `sudo tee /sys/class/backlight/amdgpu_bl1/brightness <<< 100` → Set screen brightness (value may differ per device)
+
+---
+
+## 🎨 C/C++ Code Formatting
+
+```bash
+clang-format --help
+clang-format -i --style=WebKit file.cpp
+```
+→ Format source code to WebKit style
+
+---
+
+## 🔐 Connect to OTH Regensburg KI-GPU Server (VPN + SSH)
+ - `sudo openfortivpn` → Start VPN
+ - `ssh wel36343@im-kigs.oth-regensburg.de` → Connect to GPU server
+ - `ssh-copy-id <rz_username>@im-kigs.oth-regensburg.de` → Add your SSH public key to the server
+
+---
+
+> ✨ This cheatsheet is tailored to my environment: Arch Linux + NvChad + Python + C/C++ + Jupyter + OTH VPN setup. Updated regularly.
